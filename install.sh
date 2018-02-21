@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # vim gets installed first? At least Vunlde repo will first
 echo "Installing Vundle"
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -6,6 +7,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 # With Vundle installed, can go ahead and copy over my vimrc
 echo "Moving vimrc file to appropiate location"
 cp vimrc_archie ~/.vimrc
+echo "When starting vim  for the first time, run :PluginInstall to make sure that all plugins get installed, otherwise, there will be errors"
 
 echo "Copying fonts for powerline"
 # -------------------------------------------------------------
@@ -21,7 +23,7 @@ cd ..
 rm -rf fonts
 # -------------------------------------------------------------
 
-echo " Making directory and copying i3 config file over"
+echo " Making directories and copying i3 config file over"
 # Will use archie box(actual desktop) file
 # Just in case, sometimes the i3 config file is in different locations
 mkdir ~/.config/i3
