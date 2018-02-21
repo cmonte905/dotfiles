@@ -23,8 +23,11 @@ rm -rf fonts
 
 echo " Making directory and copying i3 config file over"
 # Will use archie box(actual desktop) file
+# Just in case, sometimes the i3 config file is in different locations
 mkdir ~/.config/i3
+mkdir ~/.i3 			
 cp archie_box_i3_config ~/.config/i3/config
+cp archie_box_i3_config ~/.i3/config
 
 echo "Copying Xresources over for URxvt"
 # Copying Xresources for urxvt and reloading the file afterwards
@@ -34,7 +37,9 @@ xrdb ~/.Xresources
 echo "Installing powerline from pip3"
 # Installing powerline
 pip3 install --user powerline-status
+sudo pip3 install powerline-status
 
 echo "Copying over tmux config file over"
+echo "Depending on which python version is used in the environment, might have to edit the tmux config file to match"
 # Copy over tmux config file
 cp tmux.conf ~/.tmux.conf
