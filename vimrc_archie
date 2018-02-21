@@ -1,0 +1,113 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'git://git.wincent.com/command-t.git'
+" Trying to make my vim look a bit nicer
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'flazz/vim-colorschemes'
+" Adding stuff to make python dev a bit easier on Arch Linux
+Plugin 'tmhedberg/SimpylFold'
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdtree'
+Plugin 'jistr/vim-nerdtree-tabs'
+" Adding stuff for rust
+Plugin 'rust-lang/rust.vim'
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+set runtimepath+=~/.vim_runtime
+set ruler 
+set laststatus=2
+set title
+set wildmenu
+set wildmode=longest:full,full
+
+" Setting up stuff for split windows in vim 
+set splitbelow
+set splitright
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Code folding 
+set foldmethod=indent
+set foldlevel=99
+" might consider making space be code folding
+nnoremap <space> za
+
+set hlsearch 
+syntax on 
+let python_highlight_all=1
+
+" Trying to get no linebreaks 
+set wrap
+set linebreak
+set nolist  " According to docs, disables linebreaks
+
+set number 
+set relativenumber 
+" Gets rid of swap files and backup files, so better hope i dont fuck up
+set nobackup
+set nowb
+set noswapfile 
+
+"get from mac .vimrc file later 
+nmap <leader>l :set list<CR>
+
+"Makes tabbing in vim not retarded, and it is set at 4 spaces for every tab
+set showtabline=2
+set ts=4
+
+set laststatus=2
+set vb
+" Vim airline stuff
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='wombat'
+" Colorscheme stuff
+colorscheme gruvbox
+
+" Crap for NERDTree
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Stuff for SimpylFolding plugin, plugin that folds code
+let g:SimpylFold_docstring_preview=1
+
+" Stuff to make python dev a bit easier 
+au BufNewFile,BufRead *.py:
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+"define BadWhitespace before using in a match
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h: match BadWhitespace /\s\+$/
