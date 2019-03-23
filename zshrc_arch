@@ -90,6 +90,8 @@ source $ZSH/oh-my-zsh.sh
  alias lout="gnome-session-quit"
  alias du="ncdu"
  alias emacs="emacs -nw"
+ # If using zsh on a laptop and if the network is hidden
+ alias wifi="nmcli device wifi connect <SSID>  password <password> hidden yes"
 
  # Adding stuff for zsh autosuggestions
  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
